@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() : void {
       this.formLogin = this.fb.group({
-        username: [ ' ', Validators.required ], 
-        password: [ ' ', Validators.required ]
+        username: [ '', Validators.required ],
+        password: [ '', Validators.required ]
       });
   }
 
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.formLogin.markAllAsTouched();
     for ( const key in this.formLogin.controls) {
       //console.log(key);
-      this.formLogin.controls[ key ].markAsDirty(); 
+      this.formLogin.controls[ key ].markAsDirty();
     }
     return ;
     }
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       request_token: sessionStorage.getItem('requestToken')
     }
     const configPost = { url: constantUri.validateWithLogin, params: constantUri.apikey, body};
-    this.apiService.postService(configPost).subscribe(val => { 
+    this.apiService.postService(configPost).subscribe(val => {
       //console.log(val);
       const {request_token} = val;
       sessionStorage.setItem('requestToken', request_token);
